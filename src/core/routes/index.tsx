@@ -18,14 +18,14 @@ export const Router: React.FC = () => {
         path="/"
         element={PrivateRoute({
           Component: <AuthLayout />,
-          allowedRoles: ['admin', 'secretary', 'rh'],
+          allowedRoles: ['admin', 'staff'],
         })}
       >
         <Route
           path="/dashboard"
           element={PrivateRoute({
             Component: <Dashboard />,
-            allowedRoles: ['admin', 'secretary', 'rh'],
+            allowedRoles: ['admin', 'staff'],
           })}
         />
       </Route>

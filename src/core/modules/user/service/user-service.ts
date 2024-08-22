@@ -18,7 +18,7 @@ export async function registerUser(params: RegisterUserProps) {
 
 export async function sessions({ email, password }: SessionProps) {
   return await request<SessionResponse>({
-    url: '/sessions',
+    url: `${module}/auth`,
     method: 'post',
     body: {
       email,

@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import { FiMenu, FiPlus } from 'react-icons/fi'
 
 import { UserOptions } from '@ui-components/Menu/components/Navbar/components/user-options'
-import { Notifications } from '@ui-components/Menu/components/Navbar/components/notifications'
 import { MobileSidebar } from '@ui-components/Menu/components/mobile-sidebar'
 
 import { Button } from '@ui-components/Button'
@@ -29,7 +28,7 @@ export const NavBar: React.FC = () => {
       />
 
       <div className="flex items-center gap-6">
-        {['admin', 'secretary'].includes(user.role) ? (
+        {['admin', 'staff'].includes(user.role) ? (
           <div className="hidden sm:flex">
             <Button
               size="sm"
@@ -41,8 +40,6 @@ export const NavBar: React.FC = () => {
             </Button>
           </div>
         ) : null}
-
-        <Notifications />
 
         <UserOptions />
       </div>

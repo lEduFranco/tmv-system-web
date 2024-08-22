@@ -5,6 +5,6 @@ export const geralItems = [
     label: 'Dashboard',
     path: '/dashboard',
     icon: FiGrid,
-    allowedRoles: ['admin', 'secretary', 'rh'],
+    allowedRoles: ['admin', 'staff'],
   },
 ]

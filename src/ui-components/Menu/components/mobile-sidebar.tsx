@@ -10,7 +10,6 @@ import { geralItems } from '@ui-components/Menu/utils/geral-items'
 import { scheduleItems } from '@ui-components/Menu/utils/schedule-items'
 import { clientItems } from '@ui-components/Menu/utils/client-items'
 import { providerItems } from '@ui-components/Menu/utils/provider-items'
-import { othersItems } from '@ui-components/Menu/utils/others-items'
 import { SideBarItem } from '@ui-components/Menu/components/sidebar-item'
 
 const mobileSidebar = tv({
@@ -113,27 +112,6 @@ export const MobileSidebar: React.FC<MobileSidebarProps> = ({
           ) : null}
           {providerItems.map(({ icon, label, path }) => {
             if (user.role === 'admin') {
-              return (
-                <SideBarItem
-                  key={path}
-                  icon={icon}
-                  label={label}
-                  path={path}
-                  open={open}
-                />
-              )
-            }
-
-            return null
-          })}
-        </section>
-
-        <section className={sectionStyle()}>
-          {open ? (
-            <span className="text-text-disabled font-bold">Outros</span>
-          ) : null}
-          {othersItems.map(({ icon, label, path, allowedRoles }) => {
-            if (allowedRoles.includes(user.role)) {
               return (
                 <SideBarItem
                   key={path}

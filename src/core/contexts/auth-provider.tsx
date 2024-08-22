@@ -66,8 +66,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
         setBearerToken({ token: data.token })
 
-        localStorage.setItem('@ToMaisVip:user', JSON.stringify(data.user))
-        localStorage.setItem('@ToMaisVip:token', data.token)
+        localStorage.setItem('@tmv:user', JSON.stringify(data.user))
+        localStorage.setItem('@tmv:token', data.token)
 
         handleSetProperties({
           user: data.user,
@@ -95,8 +95,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   )
 
   const handleSignOut = useCallback(() => {
-    localStorage.removeItem('@ToMaisVip:token')
-    localStorage.removeItem('@ToMaisVip:user')
+    localStorage.removeItem('@tmv:token')
+    localStorage.removeItem('@tmv:user')
 
     handleSetProperties({
       user: null,
@@ -105,7 +105,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }, [handleSetProperties])
 
   useEffect(() => {
-    const currentToken = localStorage.getItem('@ToMaisVip:token')
+    const currentToken = localStorage.getItem('@tmv:token')
 
     if (!currentToken) return
 
@@ -121,7 +121,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     if (tokenIsValid) {
       handleSetProperties({
         tokenIsValid,
-        user: JSON.parse(localStorage.getItem('@ToMaisVip:user')),
+        user: JSON.parse(localStorage.getItem('@tmv:user')),
       })
 
       setBearerToken({ token: currentToken })

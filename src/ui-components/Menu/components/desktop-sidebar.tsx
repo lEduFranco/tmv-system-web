@@ -12,7 +12,6 @@ import { SideBarItem } from '@ui-components/Menu/components/sidebar-item'
 
 import { clientItems } from '@ui-components/Menu/utils/client-items'
 import { geralItems } from '@ui-components/Menu/utils/geral-items'
-import { othersItems } from '@ui-components/Menu/utils/others-items'
 import { scheduleItems } from '@ui-components/Menu/utils/schedule-items'
 import { providerItems } from '@ui-components/Menu/utils/provider-items'
 import { FloatingTooltip } from '@ui-components/FloatingTooltip'
@@ -133,27 +132,6 @@ export const DesktopSidebar: React.FC = () => {
         ) : null}
         {providerItems.map(({ icon, label, path, allowedroles }) => {
           if (allowedroles.includes(user.role)) {
-            return (
-              <SideBarItem
-                key={path}
-                icon={icon}
-                label={label}
-                path={path}
-                open={open}
-              />
-            )
-          }
-
-          return null
-        })}
-      </section>
-
-      <section className={sectionStyle()}>
-        {open ? (
-          <span className="text-text-disabled font-bold">Outros</span>
-        ) : null}
-        {othersItems.map(({ icon, label, path, allowedRoles }) => {
-          if (allowedRoles.includes(user.role)) {
             return (
               <SideBarItem
                 key={path}

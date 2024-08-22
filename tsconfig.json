@@ -1,0 +1,50 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["./*"],
+      "@ui-components": ["./ui-components"],
+      "@ui-components/*": ["./ui-components/*"],
+      "@modules/*": ["./core/modules/*"],
+      "@address": ["./core/modules/address"],
+      "@address/*": ["./core/modules/address/*"],
+      "@appointment": ["./core/modules/appointment"],
+      "@appointment/*": ["./core/modules/appointment/*"],
+      "@client": ["./core/modules/client"],
+      "@client/*": ["./core/modules/client/*"],
+      "@client-preferences": ["./core/modules/client-preferences"],
+      "@client-preferences/*": ["./core/modules/client-preferences/*"],
+      "@notification": ["./core/modules/notification"],
+      "@notification/*": ["./core/modules/notification/*"],
+      "@provider": ["./core/modules/provider"],
+      "@provider/*": ["./core/modules/provider/*"],
+      "@user": ["./core/modules/user"],
+      "@user/*": ["./core/modules/user/*"],
+      "@user-profile": ["./core/modules/user-profile"],
+      "@user-profile/*": ["./core/modules/user-profile/*"],
+      "@pages": ["./pages"],
+      "@pages/*": ["./pages/*"],
+    },
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

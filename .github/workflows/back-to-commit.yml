@@ -1,0 +1,30 @@
+name: Back To Commit
+
+on:
+  workflow_dispatch:
+    inputs:
+      commit_hash:
+        description: "Commit hash to rollback to"
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  rollback:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Rollback to specific commit
+        run: |
+          git checkout ${{ github.event.inputs.commit_hash }}
+          git reset --hard ${{ github.event.inputs.commit_hash }}
+          git push --force origin HEAD:main
+
+      - name: Verify rollback
+        run: git log -1

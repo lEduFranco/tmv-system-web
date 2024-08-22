@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #FFFFFF;
+    --foreground: #e7e7e7;
+    --overlay: #9c9fa380;
+
+    --menu-bg: #f8f6f6;
+    --menu-foreground: #f5eeee;
+
+    --primary: #671D43;
+    --primary-hover: #42152d;
+    --primary-foreground: #a74276;
+
+    --secondary: #f1d5e4;
+    --secondary-foreground: #ecb7d3;
+
+    --text-primary: #09090B;
+    --text-secondary: #9c9fa3;
+    --text-tertiary: #FFFFFF;
+    --text-disabled: #9ca3af;
+
+    --error: #DC2626;
+    --success: #16A34A;
+    --alert: #D97706;
+    --info: #0C83D9;
+
+    --disabled: #d1d5db;
+
+    --border: #E7E7E7;
+
+    --table-even: #FFFCFC;
+
+    --appointment-created-text: #ed9121;
+    --appointment-created-bg: #ed912126;
+
+    --appointment-confirmed-text: #00a000;
+    --appointment-confirmed-bg: #00a00026;
+
+    --appointment-suspended-text: #ed9121;
+    --appointment-suspended-bg: #ed912126;
+
+    --appointment-appeared-text: #b28d9f;
+    --appointment-appeared-bg: #b28d9f26;
+
+    --appointment-not-appeared-text: #ff0000;
+    --appointment-not-appeared-bg: #ffbfbd;
+
+    --client-type-fixed-text: #ffffff;
+    --client-type-fixed-bg: #750C41;
+
+    --appointment-frequency-weekly-text: #115e59;
+    --appointment-frequency-weekly-bg: #99f6e4;
+    
+    --appointment-frequency-biweekly-text: #075985;
+    --appointment-frequency-biweekly-bg: #a5f3fc;
+
+    --appointment-frequency-detached-text: #3730a3;
+    --appointment-frequency-detached-bg: #c7d2fe;
+
+    --appointment-frequency-first_contact_provider-text: #750C41;
+    --appointment-frequency-first_contact_provider-bg: #EADBE3;
+
+    --appointment-frequency-first_contact_client-text: #750C41;
+    --appointment-frequency-first_contact_client-bg: #EADBE3;
+
+    --appointment-period-bg: #f8f6f6;
+    --appointment-period-text: #537FB9;
+  }
+
+  ::-webkit-scrollbar {
+    background-color: transparent;
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+  }
+
+
+
+  ::-webkit-scrollbar-thumb {
+    width: 1px;
+    background-color: #3f1227;
+    border-radius: 4px;
+  }
+}

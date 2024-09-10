@@ -18,3 +18,4 @@ export * from '@ui-components/Tabs'
 
 export * from '@ui-components/PageCreate'
 export * from '@ui-components/Divider'
+export * from '@ui-components/DataGrid'

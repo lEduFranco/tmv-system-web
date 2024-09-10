@@ -1,14 +1,47 @@
-import React from 'react'
-import { PageCreate } from '@/ui-components'
-import { FiUsers } from 'react-icons/fi'
-import { ListProvidersCard } from './components/ListProviderCard'
+import React, { useMemo } from 'react'
+import { Button, ColumnProps, DataGrid, PageCreate } from '@/ui-components'
+import { FiEdit2, FiUsers } from 'react-icons/fi'
+import { dataTest } from './dataTest'
+
+type DataPros = {
+  id: string
+  name: string
+  phoneNumber: string
+  email: string
+  role: string
+}
 
 export const ListProviders: React.FC = () => {
+  const columns: ColumnProps<DataPros>[] = useMemo(() => {
+    return [
+      {
+        label: 'Nome',
+        propertyName: 'name',
+      },
+      {
+        label: 'Telefone',
+        propertyName: 'phoneNumber',
+      },
+      {
+        label: 'E-mail',
+        propertyName: 'email',
+      },
+      {
+        label: 'Função',
+        propertyName: 'role',
+      },
+    ]
+  }, [])
+
   return (
     <PageCreate title="Lista de Prestadores" icon={<FiUsers />}>
-      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-5">
-        <ListProvidersCard name="Creuza" address="Teste" icon={<FiUsers />} />
-      </div>
+      <DataGrid
+        header={<></>}
+        keyExtractor={(item) => item.id}
+        data={dataTest}
+        columns={columns}
+        renderTableActions={({ item }) => <div>aqui</div>}
+      />
     </PageCreate>
   )
 }

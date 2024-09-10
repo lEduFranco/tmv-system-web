@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
-import { Button, ColumnProps, DataGrid, PageCreate } from '@/ui-components'
-import { FiEdit2, FiUsers } from 'react-icons/fi'
+import { ColumnProps, DataGrid, PageCreate } from '@/ui-components'
+import { FiUsers } from 'react-icons/fi'
 import { dataTest } from './dataTest'
 
 type DataPros = {
@@ -36,7 +36,7 @@ export const ListProviders: React.FC = () => {
   return (
     <PageCreate title="Lista de Prestadores" icon={<FiUsers />}>
       <DataGrid
-        header={<></>}
+        header={<div>coloque o header aqui</div>}
         keyExtractor={(item) => item.id}
         data={dataTest}
         columns={columns}

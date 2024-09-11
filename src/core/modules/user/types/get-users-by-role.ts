@@ -1,7 +1,9 @@
 import { UserType } from './user'
 
+export type Role = 'provider' | 'client' | 'admin' | 'staff'
+
 export interface GetUsersRequest {
-  role: 'provider' | 'client' | 'admin' | 'staff'
+  role: Role
 }
 
 export type GetUsersResponse = UserType[]

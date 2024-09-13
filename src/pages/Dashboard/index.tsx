@@ -2,8 +2,14 @@ import React from 'react'
 import { PageCreate } from '@/ui-components'
 import { FiGrid, FiUsers, FiCalendar } from 'react-icons/fi'
 import { DashboardCard } from './components/DashboardCard'
+import { useCountAppointments } from '@/core/modules/appointment/hooks/use-count-appointments'
+import { useGetUsersByRole } from '@/core/modules/user/hooks/get-users-by-role'
 
 export const Dashboard: React.FC = () => {
+  const { countAppointments } = useCountAppointments()
+  const { users: clients } = useGetUsersByRole('client')
+  const { users: providers } = useGetUsersByRole('provider')
+
   return (
     <PageCreate title="Dashboard" icon={<FiGrid />}>
       <div className="flex items-center justify-center gap-10">
@@ -13,10 +19,19 @@ export const Dashboard: React.FC = () => {
           total="Total"
           icon={<FiCalendar />}
           items={[
-            { title: 'hoje', value: '10' },
-            { title: 'Essa semana', value: '150' },
-            { title: 'Esse mês', value: '1000' },
-            { title: 'Esse ano', value: '10000' },
+            { title: 'hoje', value: countAppointments.countAppointmentsToday },
+            {
+              title: 'Essa semana',
+              value: countAppointments.countAppointmentsWeek,
+            },
+            {
+              title: 'Esse mês',
+              value: countAppointments.countAppointmentsMonth,
+            },
+            {
+              title: 'Esse ano',
+              value: countAppointments.countAppointmentsYear,
+            },
           ]}
         />
         <DashboardCard
@@ -25,9 +40,8 @@ export const Dashboard: React.FC = () => {
           total="Total"
           icon={<FiUsers />}
           items={[
-            { title: 'Clientes', value: '10' },
-            { title: 'Prestadoras', value: '4' },
-            { title: 'Cadastrados no mês', value: '5' },
+            { title: 'Clientes', value: clients.length },
+            { title: 'Prestadoras', value: providers.length },
           ]}
         />
       </div>

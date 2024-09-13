@@ -1,6 +1,6 @@
 type items = {
   title: string
-  value: string
+  value: number
 }
 
 interface DashboardCardProps {

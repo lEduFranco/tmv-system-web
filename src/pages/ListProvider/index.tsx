@@ -19,6 +19,7 @@ export const ListProviders: React.FC = () => {
       {
         label: 'Nome',
         propertyName: 'name',
+        renderContents: ({ item }) => <span>{item.name}</span>,
       },
       {
         label: 'Telefone',

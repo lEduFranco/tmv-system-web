@@ -30,7 +30,7 @@ const TbodyArray = <T,>({ styleCell }: TbodyArrayProps<T>): JSX.Element => {
   )
 
   return (
-    <tbody className="bg-white-bee2pay">
+    <tbody className="bg-white">
       {dataArray.map((item) => (
         <Fragment key={keyExtractor(item)}>
           <Row
@@ -46,7 +46,7 @@ const TbodyArray = <T,>({ styleCell }: TbodyArrayProps<T>): JSX.Element => {
           />
         </Fragment>
       ))}
-      <tr className="hover:bg-white-bee2pay">
+      <tr className="hover:bg-white">
         <td colSpan={columns.length}></td>
       </tr>
     </tbody>

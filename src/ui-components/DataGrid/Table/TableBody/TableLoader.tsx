@@ -8,7 +8,7 @@ interface TableLoaderProps {
 
 const TableLoader = ({ colSpan, width }: TableLoaderProps): JSX.Element => {
   return (
-    <tbody className="bg-white-bee2pay">
+    <tbody className="bg-white">
       <tr>
         <td colSpan={colSpan}>
           <ContentLoader

@@ -7,6 +7,7 @@ import { ZodSchema } from 'zod'
 import { Input } from '@ui-components/Form/Input'
 import { Select } from '@ui-components/Form/Select'
 import { ToggleButton } from '@ui-components/Form/Toogle'
+import { DatePicker } from '@ui-components/Form/DatePicker'
 
 type FormData<T extends ZodSchema> =
   T extends ZodSchema<infer Data> ? Data : never
@@ -54,3 +55,4 @@ export const Form = <T extends ZodSchema>({
 Form.Input = Input
 Form.Select = Select
 Form.ToggleButton = ToggleButton
+Form.DatePicker = DatePicker

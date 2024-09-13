@@ -3,11 +3,11 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 
 import { PublicRoute } from '@/core/routes/public-route'
-import { PrivateRoute } from '@/core/routes//private-route'
+import { PrivateRoute } from '@/core/routes/private-route'
 
 import { AuthLayout } from '@/core/layout/auth-layout'
 
-import { Login, Dashboard, ListProviders } from '@/pages'
+import { Login, Dashboard, ListProviders, Schedule } from '@/pages'
 
 export const Router: React.FC = () => {
   return (
@@ -25,6 +25,14 @@ export const Router: React.FC = () => {
           path="/dashboard"
           element={PrivateRoute({
             Component: <Dashboard />,
+            allowedRoles: ['admin', 'staff'],
+          })}
+        />
+
+        <Route
+          path="/schedule"
+          element={PrivateRoute({
+            Component: <Schedule />,
             allowedRoles: ['admin', 'staff'],
           })}
         />

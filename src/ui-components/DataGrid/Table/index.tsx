@@ -35,12 +35,12 @@ const Table = <T,>({ tableWrapperRef }: TableProps): JSX.Element => {
           const previousItemWidth =
             arrayColumns[index - 1]?.fixedWidthColumn ?? 0
           return `sticky left-[${previousItemWidth}px] min-w-[${width}px] max-w-[${width}px] ${
-            type === 'column' ? 'bg-slate-4' : 'bg-white-bee2pay'
+            type === 'column' ? 'bg-slate-400' : 'bg-white'
           }`
         }
 
         return `sticky left-0 min-w-[${width}px] max-w-[${width}px] ${
-          type === 'column' ? 'bg-slate-4' : 'bg-white-bee2pay'
+          type === 'column' ? 'bg-slate-400' : 'bg-white'
         }`
       }
 
@@ -53,15 +53,12 @@ const Table = <T,>({ tableWrapperRef }: TableProps): JSX.Element => {
   return (
     <div
       ref={tableWrapperRef}
-      className={classnames(
-        'overflow-auto scrollbar-bee2pay-data-grid w-full bg-white block h-screen',
-        {
-          [`[&::-webkit-scrollbar-track]:ml-[${widthByFixedColumns}px]`]:
-            fixedColumns > 0,
-        },
-      )}
+      className={classnames('overflow-auto w-full bg-white block h-screen', {
+        [`[&::-webkit-scrollbar-track]:ml-[${widthByFixedColumns}px]`]:
+          fixedColumns > 0,
+      })}
     >
-      <table className="relative w-full text-slate-2">
+      <table className="relative w-full text-zinc-700">
         <TableHeader styleCell={styleCell} />
         <TableBody styleCell={styleCell} />
       </table>

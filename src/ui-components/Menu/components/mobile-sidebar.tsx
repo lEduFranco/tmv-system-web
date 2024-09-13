@@ -7,7 +7,6 @@ import { useAuth } from '@/core/hooks/use-auth'
 import horizontalLogo from '@/assets/logo/tmv-horizontal-logo.svg'
 
 import { geralItems } from '@ui-components/Menu/utils/geral-items'
-import { scheduleItems } from '@ui-components/Menu/utils/schedule-items'
 import { clientItems } from '@ui-components/Menu/utils/client-items'
 import { providerItems } from '@ui-components/Menu/utils/provider-items'
 import { SideBarItem } from '@ui-components/Menu/components/sidebar-item'
@@ -49,27 +48,6 @@ export const MobileSidebar: React.FC<MobileSidebarProps> = ({
             <span className="text-text-disabled font-bold">Geral</span>
           ) : null}
           {geralItems.map(({ path, icon, label, allowedRoles }) => {
-            if (allowedRoles.includes(user.role)) {
-              return (
-                <SideBarItem
-                  key={path}
-                  icon={icon}
-                  label={label}
-                  path={path}
-                  open={open}
-                />
-              )
-            }
-
-            return null
-          })}
-        </section>
-
-        <section className={sectionStyle()}>
-          {open ? (
-            <span className="text-text-disabled font-bold">Agendamento</span>
-          ) : null}
-          {scheduleItems.map(({ icon, label, path, allowedRoles }) => {
             if (allowedRoles.includes(user.role)) {
               return (
                 <SideBarItem

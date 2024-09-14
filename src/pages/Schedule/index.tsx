@@ -21,10 +21,13 @@ export const Schedule: React.FC = () => {
 
   const date = form.watch('date')
 
+  const dateFormat = useMemo(() => {
+    return format(date, 'yyyy-MM-dd')
+  }, [date])
+
   useEffect(() => {
-    const dateFormat = format(date, 'yyyy-MM-dd')
     getAppointments(dateFormat)
-  }, [date, getAppointments])
+  }, [date, getAppointments, dateFormat])
 
   const columns: ColumnProps<Appointment>[] = useMemo(() => {
     return [
@@ -53,7 +56,7 @@ export const Schedule: React.FC = () => {
         icon={<FiCalendar />}
         fitContent
         actions={
-          <Button onClick={() => getAppointments('provider')}>
+          <Button onClick={() => getAppointments(dateFormat)}>
             <FiRotateCcw />
           </Button>
         }

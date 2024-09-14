@@ -1,20 +1,19 @@
-import { Button, Form } from '@/ui-components'
+import { Form } from '@/ui-components'
 
 import React from 'react'
 
-import { FiPlus } from 'react-icons/fi'
+import { ModalCreate } from '../modal-create'
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  getAppointments: (date: string) => void
+}
+
+const Header: React.FC<HeaderProps> = ({ getAppointments }) => {
   return (
     <div className="flex justify-between items-center">
       <Form.DatePicker name="date" className="w-[100px] cursor-pointer z-20" />
 
-      <div className="w-1/4">
-        <Button size="sm">
-          <FiPlus />
-          Criar agendamento
-        </Button>
-      </div>
+      <ModalCreate getAppointments={getAppointments} />
     </div>
   )
 }

@@ -1,9 +1,9 @@
-import { useUpdateAppointments } from '@/core/modules/appointment/hooks/use-update-appointments'
-import { Button } from '@/ui-components'
+import { Button, useToast } from '@/ui-components'
 import { format } from 'date-fns'
 import React from 'react'
 import { useFormContext } from 'react-hook-form'
 import { FormData } from '.'
+import { useCreateAppointments } from '@/core/modules/appointment/hooks/use-create-appointments'
 
 interface FooterProps {
   handleModalClose: () => void
@@ -14,24 +14,26 @@ const Footer: React.FC<FooterProps> = ({
   handleModalClose,
   getAppointments,
 }) => {
-  const { handleSubmit, watch } = useFormContext()
-  const { handleUpdateAppointments, loading } = useUpdateAppointments()
-
-  const { id, providerId } = watch()
+  const { handleSubmit } = useFormContext()
+  const { handleCreateAppointments, loading } = useCreateAppointments()
+  const { addToast } = useToast()
 
   const handleEdit = handleSubmit((data: FormData) => {
-    const { date } = data
+    try {
+      const { date } = data
 
-    const payload = {
-      clientId: data.clientId,
-      date: format(date, 'yyyy-MM-dd'),
-      id,
-      providerId,
+      const payload = {
+        clientId: data.clientId,
+        date: format(date, 'yyyy-MM-dd'),
+        providerId: data.providerId,
+      }
+      handleCreateAppointments(payload)
+
+      handleModalClose()
+      getAppointments(format(date, 'yyyy-MM-dd'))
+    } catch (error) {
+      addToast({ title: 'Error', description: error.message, type: 'error' })
     }
-    handleUpdateAppointments(payload)
-
-    handleModalClose()
-    getAppointments(format(date, 'yyyy-MM-dd'))
   })
 
   return (

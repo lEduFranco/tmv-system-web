@@ -18,9 +18,6 @@ export const PrivateRoute = ({
 }: PrivateRouteProps) => {
   const { tokenIsValid, user } = useAuth()
 
-  console.log('user', user)
-  console.log('tokenIsValid', tokenIsValid)
-
   if (!tokenIsValid || (allowedRoles && !allowedRoles.includes(user.role))) {
     return <Navigate to="/" />
   }

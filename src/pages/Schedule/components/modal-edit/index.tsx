@@ -12,6 +12,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 
 interface ModalEditProps {
   item: Appointment
+  getAppointments: (date: string) => void
 }
 
 export type FormData = {
@@ -27,7 +28,7 @@ const schema = yup.object().shape({
   providerId: yup.string().required(),
 })
 
-const ModalEdit: React.FC<ModalEditProps> = ({ item }) => {
+const ModalEdit: React.FC<ModalEditProps> = ({ item, getAppointments }) => {
   const [listUsers, setListUsers] = useState<UserType[]>([])
   const [isOpen, setIsOpen] = useState(false)
 
@@ -75,7 +76,12 @@ const ModalEdit: React.FC<ModalEditProps> = ({ item }) => {
         <Modal.Content
           size="xl"
           title="Editar Agendamento"
-          footerContent={<Footer handleModalClose={handleModalClose} />}
+          footerContent={
+            <Footer
+              handleModalClose={handleModalClose}
+              getAppointments={getAppointments}
+            />
+          }
         >
           <div className="flex flex-col gap-3">
             <Form.Input

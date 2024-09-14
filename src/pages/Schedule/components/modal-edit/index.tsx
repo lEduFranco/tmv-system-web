@@ -1,15 +1,18 @@
 import { Button, Form, Modal } from '@/ui-components'
-import React, { useCallback } from 'react'
+import React, { useCallback, useState } from 'react'
 import { FiEdit2 } from 'react-icons/fi'
 import { Footer } from './footer'
 import { FormProvider, useForm } from 'react-hook-form'
-import { Appointment } from '@/core'
+import { Appointment, UserType } from '@/core'
 
 import { useGetUsersByRole } from '@/core/modules/user/hooks/get-users-by-role'
 import { parseISO } from 'date-fns'
+import * as yup from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
 
 interface ModalEditProps {
   item: Appointment
+  getAppointments: (date: string) => void
 }
 
 export type FormData = {
@@ -19,9 +22,19 @@ export type FormData = {
   providerId: string
 }
 
-const ModalEdit: React.FC<ModalEditProps> = ({ item }) => {
+const schema = yup.object().shape({
+  clientId: yup.string().required('Cliente é obrigatório'),
+  date: yup.date().required('Data é obrigatória'),
+  providerId: yup.string().required(),
+})
+
+const ModalEdit: React.FC<ModalEditProps> = ({ item, getAppointments }) => {
+  const [listUsers, setListUsers] = useState<UserType[]>([])
+  const [isOpen, setIsOpen] = useState(false)
+
   const { users } = useGetUsersByRole('client')
   const form = useForm<FormData>({
+    resolver: yupResolver(schema),
     defaultValues: {
       id: item.id,
       clientId: item.clientId,
@@ -30,45 +43,85 @@ const ModalEdit: React.FC<ModalEditProps> = ({ item }) => {
     },
   })
 
+  const { clientId } = form.watch()
+
   const filterUsers = useCallback(
     (value: string) => {
-      return users.filter((user) =>
-        user.name.toLowerCase().includes(value.toLowerCase()),
-      )
+      if (!value.trim()) {
+        setListUsers([])
+      } else {
+        const filter = users.filter((user) =>
+          user.name.toLowerCase().includes(value.toLowerCase()),
+        )
+
+        setListUsers(filter)
+      }
     },
     [users],
   )
 
+  const handleModalClose = () => {
+    setIsOpen(false)
+    form.reset()
+  }
+
   return (
     <FormProvider {...form}>
-      <Modal>
+      <Modal open={isOpen} onOpenChange={setIsOpen}>
         <Modal.Trigger>
-          <Button typeColor="alert">
+          <Button typeColor="alert" onClick={() => setIsOpen(true)}>
             <FiEdit2 />
           </Button>
         </Modal.Trigger>
         <Modal.Content
           size="xl"
           title="Editar Agendamento"
-          footerContent={<Footer />}
+          footerContent={
+            <Footer
+              handleModalClose={handleModalClose}
+              getAppointments={getAppointments}
+            />
+          }
         >
           <div className="flex flex-col gap-3">
             <Form.Input
               type="text"
-              name="client"
-              label="Cliente"
+              name="clientId"
+              label="Id do Cliente"
               isRequired
               onChange={(event) => filterUsers(event.target.value)}
             />
-            {users.map((user) => (
+            {listUsers.map((user) => (
               <div
                 key={user.id}
-                className="px-4 p-2 flex items-center justify-start"
-                onClick={() => form.setValue('clientId', user.id)}
+                className={`px-4 p-2 flex items-center rounded-md justify-start cursor-pointer hover:bg-primary hover:text-white ${clientId === user.id ? 'bg-primary text-white' : 'bg-slate-100'}`}
+                onClick={() => {
+                  if (clientId !== user.clientId) {
+                    form.setValue('clientId', user.clientId)
+                  } else {
+                    form.setValue('clientId', undefined)
+                  }
+                }}
               >
                 <span>{user.name}</span>
               </div>
             ))}
+
+            {clientId ? (
+              <div
+                className={`px-4 p-2 flex items-center rounded-md justify-start cursor-pointer bg-primary text-white`}
+                onClick={() => form.setValue('clientId', undefined)}
+              >
+                <span>
+                  <strong>Cliente: </strong>
+                  {
+                    users.find((user) => {
+                      return user.clientId === clientId
+                    })?.name
+                  }
+                </span>
+              </div>
+            ) : null}
 
             <Form.DatePicker
               name="date"

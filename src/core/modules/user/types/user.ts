@@ -11,4 +11,6 @@ export type UserType = {
   createdAt: string
   updatedAt: string
   address?: AddressType[]
+  clientId?: string
+  providerId?: string
 }

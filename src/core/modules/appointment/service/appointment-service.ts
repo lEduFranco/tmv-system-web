@@ -1,6 +1,9 @@
 import { request } from '@/core/services/request'
 
-import { DeleteAppointmentProps, DeleteAppointmentResponse } from '@appointment'
+import {
+  DeleteAppointmentRequest,
+  DeleteAppointmentResponse,
+} from '@appointment'
 import { CountAppointmentsResponse } from '../types/count-appointments'
 import {
   GetAppointmentsByDateRequest,
@@ -10,10 +13,14 @@ import {
   UpdateAppointmentsRequest,
   UpdateAppointmentsResponse,
 } from '../types/update-appointment'
+import {
+  CreateAppointmentsRequest,
+  CreateAppointmentsResponse,
+} from '../types/create-appointment'
 
 const module = '/appointments'
 
-export async function deleteAppointment(params: DeleteAppointmentProps) {
+export async function deleteAppointment(params: DeleteAppointmentRequest) {
   return await request<DeleteAppointmentResponse>({
     url: `${module}/${params.id}`,
     method: 'delete',
@@ -47,5 +54,13 @@ export async function updateAppointment(data: UpdateAppointmentsRequest) {
       clientId: data.clientId,
       providerId: data.providerId,
     },
+  })
+}
+
+export async function createAppointment(data: CreateAppointmentsRequest) {
+  return await request<CreateAppointmentsResponse>({
+    url: `${module}/`,
+    method: 'post',
+    body: data,
   })
 }

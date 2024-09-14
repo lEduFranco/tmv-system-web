@@ -62,11 +62,13 @@ export const Schedule: React.FC = () => {
         }
       >
         <DataGrid
-          header={<Header />}
+          header={<Header getAppointments={getAppointments} />}
           keyExtractor={(item) => item.id}
           data={appointments}
           columns={columns}
-          renderTableActions={({ item }) => <Actions item={item} />}
+          renderTableActions={({ item }) => (
+            <Actions getAppointments={getAppointments} item={item} />
+          )}
           loading={loading}
         />
       </PageCreate>

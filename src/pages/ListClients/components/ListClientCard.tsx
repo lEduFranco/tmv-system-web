@@ -15,7 +15,7 @@ const ListClientsCard: React.FC<ListClientsProps> = ({ name }) => {
         </Button>
       </div>
       <div>
-        <h2 className="text-xl font-semibold">Diaristas</h2>
+        <h2 className="text-xl font-semibold">Clientes</h2>
       </div>
       <div className="bg-white p-5 rounded-lg shadow gap-4">
         <div className="flex justify-between mb-5">

@@ -13,6 +13,7 @@ const useGetAppointmentsByDate = () => {
   const getAppointments = useCallback(
     async (date: string) => {
       try {
+        setLoading(true)
         const response = await getAppointmentsByDate({ date })
         setAppointments(response.data)
       } catch (error) {

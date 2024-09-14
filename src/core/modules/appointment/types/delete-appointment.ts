@@ -1,4 +1,4 @@
-export interface DeleteAppointmentProps {
+export interface DeleteAppointmentRequest {
   id: string
 }
 

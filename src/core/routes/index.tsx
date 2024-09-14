@@ -7,7 +7,7 @@ import { PrivateRoute } from '@/core/routes/private-route'
 
 import { AuthLayout } from '@/core/layout/auth-layout'
 
-import { Login, Dashboard, ListProviders, Schedule } from '@/pages'
+import { Login, Dashboard, ListProviders, Schedule, ListClients } from '@/pages'
 
 export const Router: React.FC = () => {
   return (
@@ -41,6 +41,14 @@ export const Router: React.FC = () => {
           path="/list-providers"
           element={PrivateRoute({
             Component: <ListProviders />,
+            allowedRoles: ['admin', 'staff'],
+          })}
+        />
+
+        <Route
+          path="/list-clients"
+          element={PrivateRoute({
+            Component: <ListClients />,
             allowedRoles: ['admin', 'staff'],
           })}
         />

@@ -11,8 +11,8 @@ type DataPros = {
   role: string
 }
 
-export const ListProviders: React.FC = () => {
-  const { users, loading, handleGetUsersByRole } = useGetUsersByRole('provider')
+export const ListClients: React.FC = () => {
+  const { users, loading, handleGetUsersByRole } = useGetUsersByRole('client')
 
   const columns: ColumnProps<DataPros>[] = useMemo(() => {
     return [
@@ -37,7 +37,7 @@ export const ListProviders: React.FC = () => {
   }, [])
 
   return (
-    <PageCreate title="Lista de Prestadores" icon={<FiUsers />}>
+    <PageCreate title="Lista de Clientes" icon={<FiUsers />}>
       <DataGrid
         header={
           <Button onClick={() => handleGetUsersByRole('provider')}>

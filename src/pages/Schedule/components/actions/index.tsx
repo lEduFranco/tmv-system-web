@@ -8,7 +8,7 @@ interface ActionsProps {
   item: Appointment
 }
 
-const Actions: React.FC<ActionsProps> = ({ item }) => {
+const Actions: React.FC<ActionsProps> = () => {
   return (
     <div className="flex gap-1">
       <ModalEdit item={item} />

@@ -1,8 +1,8 @@
 import { UserType } from '@/core'
-import { Button, Form, Modal } from '@/ui-components'
+import { Button } from '@/ui-components'
 import React from 'react'
-import { FiEdit2, FiTrash2 } from 'react-icons/fi'
-import { FormProvider, useForm } from 'react-hook-form'
+import { FiTrash2 } from 'react-icons/fi'
+
 import { ModalEdit } from '../modal-edit'
 
 interface ActionsProps {
@@ -10,13 +10,10 @@ interface ActionsProps {
 }
 
 export const Actions: React.FC<ActionsProps> = ({ item }) => {
-  const methods = useForm()
-
   return (
     <div className="flex gap-1">
-      <FormProvider {...methods}>
-        <ModalEdit item={item} />
-      </FormProvider>
+      <ModalEdit item={item} />
+
       <Button typeColor="error">
         <FiTrash2 />
       </Button>

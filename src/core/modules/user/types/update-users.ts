@@ -1,4 +1,4 @@
-export interface RegisterUserProps {
+export interface updateUserProps {
   role: "admin" | "provider" | "client" | "staff";
   email: string;
   password: string;

@@ -3,19 +3,12 @@ import { Button, ColumnProps, DataGrid, PageCreate } from '@/ui-components'
 import { FiUsers, FiRotateCcw } from 'react-icons/fi'
 import { Actions } from './components/actions'
 import { useGetUsersByRole } from '@/core/modules/user/hooks/get-users-by-role'
-
-type DataPros = {
-  id: string
-  name: string
-  phoneNumber: string
-  email: string
-  role: string
-}
+import { UserType } from '@/core'
 
 export const ListProviders: React.FC = () => {
   const { users, loading, handleGetUsersByRole } = useGetUsersByRole('provider')
 
-  const columns: ColumnProps<DataPros>[] = useMemo(() => {
+  const columns: ColumnProps<UserType>[] = useMemo(() => {
     return [
       {
         label: 'Nome',

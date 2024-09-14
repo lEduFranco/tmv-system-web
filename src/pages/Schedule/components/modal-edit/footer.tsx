@@ -4,10 +4,16 @@ import { format } from 'date-fns'
 import React from 'react'
 import { useFormContext } from 'react-hook-form'
 import { FormData } from '.'
+import { useGetAppointmentsByDate } from '@/core/modules/appointment/hooks/use-get-appointments-by-date'
 
-const Footer: React.FC = () => {
+interface FooterProps {
+  handleModalClose: () => void
+}
+
+const Footer: React.FC<FooterProps> = ({ handleModalClose }) => {
   const { handleSubmit, watch } = useFormContext()
   const { handleUpdateAppointments, loading } = useUpdateAppointments()
+  const { getAppointments } = useGetAppointmentsByDate()
 
   const { id, providerId } = watch()
 
@@ -21,21 +27,27 @@ const Footer: React.FC = () => {
       providerId,
     }
     handleUpdateAppointments(payload)
+
+    handleModalClose()
+    getAppointments(format(date, 'yyyy-MM-dd'))
   })
 
   return (
-    <div className="flex gap-1">
-      <Button typeColor="blank" size="sm">
-        Cancelar
-      </Button>
-      <Button
-        size="sm"
-        typeColor="success"
-        onClick={handleEdit}
-        isLoading={loading}
-      >
-        Salvar
-      </Button>
+    <div className="flex justify-end">
+      <div className="flex gap-1">
+        <Button typeColor="blank" size="sm">
+          Cancelar
+        </Button>
+
+        <Button
+          size="sm"
+          typeColor="success"
+          onClick={handleEdit}
+          isLoading={loading}
+        >
+          Salvar
+        </Button>
+      </div>
     </div>
   )
 }

@@ -1,15 +1,25 @@
-import { Appointment } from '@/core'
+import { UserType } from '@/core'
 import { Button, Form, Modal } from '@/ui-components'
 import React from 'react'
 import { FiEdit2, FiTrash2 } from 'react-icons/fi'
 import { FormProvider, useForm } from 'react-hook-form'
 
 interface ActionsProps {
-  item: Appointment
+  item: UserType
 }
 
-export const Actions: React.FC<ActionsProps> = () => {
-  const methods = useForm()
+export const Actions: React.FC<ActionsProps> = ({ item }) => {
+  const methods = useForm({
+    defaultValues: {
+      nome: item.name,
+      email: item.email,
+      telefone: item.phoneNumber,
+    },
+  })
+
+  const onSubmit = (data: any) => {
+    console.log('Dados atualizados:', data)
+  }
 
   return (
     <div className="flex gap-1">
@@ -24,29 +34,33 @@ export const Actions: React.FC<ActionsProps> = () => {
             title="Editar Agendamento"
             footerContent={
               <div className="flex items-center justify-center gap-20  m-4">
-                {<Button typeColor="blank">Cancelar</Button>}
-                {<Button typeColor="success">Salvar</Button>}
+                {
+                  <Button typeColor="blank" onClick={() => methods.reset()}>
+                    Cancelar
+                  </Button>
+                }
+                {
+                  <Button
+                    typeColor="success"
+                    onClick={() => methods.handleSubmit(onSubmit)}
+                  >
+                    Salvar
+                  </Button>
+                }
               </div>
             }
           >
             <div>
-              <Form.Input
-                type="text"
-                name="nome"
-                label="Alterar nome"
-                isRequired
-              />
+              <Form.Input type="text" name="nome" label="Alterar nome" />
               <Form.Input
                 type="text"
                 name="teste"
                 label="Alterar endereço de e-mail"
-                isRequired
               />
               <Form.Input
                 type="text"
                 name="teste"
                 label="Alterar número de telefone"
-                isRequired
               />
             </div>
           </Modal.Content>

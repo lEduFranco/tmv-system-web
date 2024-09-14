@@ -5,6 +5,7 @@ export type UserType = {
   email: string
   role: 'admin' | 'provider' | 'client' | 'staff'
   name: string
+  phoneNumber: string
   password: string
   avatarUrl: string | null
   createdAt: string

@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react'
 import { Button, ColumnProps, DataGrid, PageCreate } from '@/ui-components'
-import { FiUsers } from 'react-icons/fi'
+import { FiUsers, FiRotateCcw } from 'react-icons/fi'
+import { Actions } from './components/actions'
 import { useGetUsersByRole } from '@/core/modules/user/hooks/get-users-by-role'
 
 type DataPros = {
@@ -29,10 +30,6 @@ export const ListProviders: React.FC = () => {
         label: 'E-mail',
         propertyName: 'email',
       },
-      {
-        label: 'Função',
-        propertyName: 'role',
-      },
     ]
   }, [])
 
@@ -40,14 +37,18 @@ export const ListProviders: React.FC = () => {
     <PageCreate title="Lista de Prestadores" icon={<FiUsers />}>
       <DataGrid
         header={
-          <Button onClick={() => handleGetUsersByRole('provider')}>
-            reload
+          <Button
+            onClick={() => handleGetUsersByRole('provider')}
+            icon={<FiRotateCcw />}
+          >
+            Recarregar
           </Button>
         }
         keyExtractor={(item) => item.id}
         data={users}
         columns={columns}
         loading={loading}
+        renderTableActions={({ item }) => <Actions item={item} />}
       />
     </PageCreate>
   )

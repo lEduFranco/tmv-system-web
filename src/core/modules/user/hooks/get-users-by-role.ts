@@ -1,10 +1,10 @@
 import { useState, useEffect, useCallback } from 'react'
 
 import { getUsersByRole } from '../service/user-service'
-import { Role } from '../types/get-users-by-role'
+import { GetUsersResponse, Role } from '../types/get-users-by-role'
 
 const useGetUsersByRole = (role: Role) => {
-  const [users, setUsers] = useState([])
+  const [users, setUsers] = useState<GetUsersResponse>([])
   const [loading, setLoading] = useState(false)
 
   const handleGetUsersByRole = useCallback(async (role: Role) => {

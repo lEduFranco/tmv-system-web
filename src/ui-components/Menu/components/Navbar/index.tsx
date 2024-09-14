@@ -1,17 +1,10 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { FiMenu, FiPlus } from 'react-icons/fi'
 
-import { UserOptions } from '@ui-components/Menu/components/Navbar/components/user-options'
+import { FiMenu } from 'react-icons/fi'
+
 import { MobileSidebar } from '@ui-components/Menu/components/mobile-sidebar'
 
-import { Button } from '@ui-components/Button'
-import { useAuth } from '@/core/hooks/use-auth'
-
 export const NavBar: React.FC = () => {
-  const { user } = useAuth()
-  const navigate = useNavigate()
-
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false)
 
   return (
@@ -26,23 +19,6 @@ export const NavBar: React.FC = () => {
         open={isMobileSidebarOpen}
         closeSidebar={() => setIsMobileSidebarOpen(false)}
       />
-
-      <div className="flex items-center gap-6">
-        {['admin', 'staff'].includes(user.role) ? (
-          <div className="hidden sm:flex">
-            <Button
-              size="sm"
-              block={false}
-              onClick={() => navigate('/create-appointments')}
-            >
-              <FiPlus />
-              Novo Agendamento
-            </Button>
-          </div>
-        ) : null}
-
-        <UserOptions />
-      </div>
     </div>
   )
 }

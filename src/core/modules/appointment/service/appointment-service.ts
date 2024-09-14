@@ -6,6 +6,10 @@ import {
   GetAppointmentsByDateRequest,
   GetAppointmentsByDateResponse,
 } from '../types/get-appointments-by-date'
+import {
+  UpdateAppointmentsRequest,
+  UpdateAppointmentsResponse,
+} from '../types/update-appointment'
 
 const module = '/appointments'
 
@@ -30,5 +34,18 @@ export async function getAppointmentsByDate({
     url: `${module}/find-by-date`,
     method: 'get',
     params: { date },
+    cacheTime: 0,
+  })
+}
+
+export async function updateAppointment(data: UpdateAppointmentsRequest) {
+  return await request<UpdateAppointmentsResponse>({
+    url: `${module}/${data.id}`,
+    method: 'put',
+    body: {
+      date: data.date,
+      clientId: data.clientId,
+      providerId: data.providerId,
+    },
   })
 }

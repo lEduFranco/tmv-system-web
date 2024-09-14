@@ -7,7 +7,7 @@ import { FiPlus } from 'react-icons/fi'
 const Header: React.FC = () => {
   return (
     <div className="flex justify-between items-center">
-      <Form.DatePicker name="date" />
+      <Form.DatePicker name="date" className="w-[100px] cursor-pointer z-20" />
 
       <div className="w-1/4">
         <Button size="sm">

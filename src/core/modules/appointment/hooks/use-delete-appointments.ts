@@ -1,38 +1,38 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback } from "react";
 
-import { useToast } from '@/ui-components'
-import { deleteAppointment } from '..'
-import { DeleteAppointmentRequest } from '../types/delete-appointment'
+import { useToast } from "@/ui-components";
+import { deleteAppointment } from "..";
+import { DeleteAppointmentRequest } from "../types/delete-appointment";
 
 const useDeleteAppointments = () => {
-  const { addToast } = useToast()
-  const [loading, setLoading] = useState(false)
+  const { addToast } = useToast();
+  const [loading, setLoading] = useState(false);
 
   const handleDeleteAppointments = useCallback(
     async (params: DeleteAppointmentRequest) => {
-      setLoading(true)
+      setLoading(true);
       try {
-        const response = await deleteAppointment(params)
+        const response = await deleteAppointment(params);
 
         if (!response.data) {
-          return
+          return;
         }
 
         addToast({
-          title: 'Success',
-          description: 'Appointment Deleted',
-          type: 'success',
-        })
+          title: "Success",
+          description: "Appointment Deleted",
+          type: "success",
+        });
       } catch (error) {
-        addToast({ title: 'Error', description: error.message, type: 'error' })
+        addToast({ title: "Error", description: error.message, type: "error" });
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
     },
-    [addToast],
-  )
+    [addToast]
+  );
 
-  return { handleDeleteAppointments, loading }
-}
+  return { handleDeleteAppointments, loading };
+};
 
-export { useDeleteAppointments }
+export { useDeleteAppointments };

@@ -1,1 +1,1 @@
-export * from '@/core/modules/address/types'
+export * from "@/core/modules/address";

@@ -1,36 +1,37 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useCallback } from "react";
 
-import { getAddress } from '../service/address-service'
-import { useToast } from '@/ui-components'
-import { AddressType } from '../types'
+import { getAddress as getAddressService } from "../service/address-service";
+import { useToast } from "@/ui-components";
+import { AddressType } from "../types";
 
 const useGetAddress = () => {
-  const { addToast } = useToast()
+  const { addToast } = useToast();
 
-  const [address, setAddress] = useState<Address[]>([])
-  const [loading, setLoading] = useState(true)
+  const [address, setAddress] = useState<AddressType[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const getAddress = useCallback(
-    async (date: string) => {
+    async (addressData: {
+      street: string;
+      city: string;
+      state: string;
+      zipCode: string;
+      country: string;
+    }) => {
       try {
-        setLoading(true)
-        const response = await getAddress({ date })
-        setAddress(response.data)
+        setLoading(true);
+        const response = await getAddressService(addressData);
+        setAddress(response.data);
       } catch (error) {
-        addToast({ title: 'Error', description: error.message, type: 'error' })
+        addToast({ title: "Error", description: error.message, type: "error" });
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
     },
-    [addToast],
-  )
+    [addToast]
+  );
 
-  useEffect(() => {
-    const date = new Date().toISOString().split('T')[0]
-    getAddress(date)
-  }, [getAddress])
+  return { address, loading, getAddress };
+};
 
-  return { address, loading, getAddress }
-}
-
-export { useGetAddress }
+export { useGetAddress };

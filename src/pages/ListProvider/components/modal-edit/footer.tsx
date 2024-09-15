@@ -1,24 +1,24 @@
-import { useUpdateUser } from '@/core/modules/user/hooks/use-update-user'
-import { UpdateUserRequest } from '@/core/modules/user/types/update-users'
+import { useUpdateUser } from "@/core/modules/user/hooks/use-update-user";
+import { UpdateUserRequest } from "@/core/modules/user/types/update-users";
 
-import { Button } from '@/ui-components'
+import { Button } from "@/ui-components";
 
-import React from 'react'
-import { useFormContext } from 'react-hook-form'
+import React from "react";
+import { useFormContext } from "react-hook-form";
 
 interface FooterProps {
-  handleModalClose: () => void
+  handleModalClose: () => void;
 }
 
 const Footer: React.FC<FooterProps> = ({ handleModalClose }) => {
-  const { handleSubmit } = useFormContext()
-  const { handleUpdateUser, loading } = useUpdateUser()
+  const { handleSubmit } = useFormContext();
+  const { handleUpdateUser, loading } = useUpdateUser();
 
   const handleEdit = handleSubmit((data: UpdateUserRequest) => {
-    handleUpdateUser(data)
+    handleUpdateUser(data);
 
-    handleModalClose()
-  })
+    handleModalClose();
+  });
 
   return (
     <div className="flex justify-end">
@@ -37,7 +37,7 @@ const Footer: React.FC<FooterProps> = ({ handleModalClose }) => {
         </Button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export { Footer }
+export { Footer };

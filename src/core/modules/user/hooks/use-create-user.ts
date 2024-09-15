@@ -1,38 +1,38 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback } from 'react'
 
-import { useToast } from "@/ui-components";
-import { createUser } from "../service/user-service";
-import { CreateUserRequest } from "../types/create-appointment";
+import { useToast } from '@/ui-components'
+import { createUser } from '../service/user-service'
+import { CreateUserRequest } from '../types/create-user'
 
 const useCreateUser = () => {
-  const { addToast } = useToast();
-  const [loading, setLoading] = useState(false);
+  const { addToast } = useToast()
+  const [loading, setLoading] = useState(false)
 
-  const handleCreateUsers = useCallback(
+  const handleCreateUser = useCallback(
     async (params: CreateUserRequest) => {
-      setLoading(true);
+      setLoading(true)
       try {
-        const response = await createUser(params);
+        const response = await createUser(params)
 
         if (!response.data) {
-          return;
+          return
         }
 
         addToast({
-          title: "Success",
-          description: "User Created",
-          type: "success",
-        });
+          title: 'Success',
+          description: 'User Created',
+          type: 'success',
+        })
       } catch (error) {
-        addToast({ title: "Error", description: error.message, type: "error" });
+        addToast({ title: 'Error', description: error.message, type: 'error' })
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
     },
-    [addToast]
-  );
+    [addToast],
+  )
 
-  return { handleCreateUsers, loading };
-};
+  return { handleCreateUser, loading }
+}
 
-export { useCreateUser };
+export { useCreateUser }

@@ -1,9 +1,12 @@
-import { AddressType } from "./address";
+import { AddressType } from './address'
 
 export type CreateAddressRequest = {
-  date: string;
-  clientId: string;
-  providerId: string;
-};
+  street: string
+  city: string
+  state: string
+  zipCode: string
+  country: string
+  userId: string
+}
 
-export type CreateAddressResponse = AddressType;
+export type CreateAddressResponse = AddressType

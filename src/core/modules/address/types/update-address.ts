@@ -1,19 +1,19 @@
 export interface UpdateAddressRequest {
   id: string
-  role: 'admin' | 'provider' | 'client' | 'staff'
-  email: string
-  password: string
-  name: string
-  phoneNumber: string
-  avatarUrl?: string | null
+  street: string
+  city: string
+  state: string
+  zipCode: string
+  country: string
+  userId: string
 }
 
 export interface UpdateAddressResponse {
   id: string
-  role: 'admin' | 'provider' | 'client' | 'staff'
-  email: string
-  password: string
-  name: string
-  phoneNumber: string
-  avatarUrl: string | null
+  street: string
+  city: string
+  state: string
+  zipCode: string
+  country: string
+  userId: string
 }

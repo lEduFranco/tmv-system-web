@@ -10,7 +10,7 @@ export type UserType = {
   avatarUrl: string | null
   createdAt: string
   updatedAt: string
-  address?: AddressType[]
+  addresses?: AddressType[]
   clientId?: string
   providerId?: string
 }

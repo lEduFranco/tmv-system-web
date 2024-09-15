@@ -5,7 +5,7 @@ import { Footer } from './footer'
 import { FormProvider, useForm } from 'react-hook-form'
 import { UserType } from '@/core'
 
-import { useGetUsersByRole } from '@/core/modules/user/hooks/get-users-by-role'
+import { useGetUsersByRole } from '@/core/modules/user/hooks/use-get-users-by-role'
 
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'

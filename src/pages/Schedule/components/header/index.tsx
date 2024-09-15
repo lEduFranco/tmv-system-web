@@ -18,4 +18,4 @@ const Header: React.FC<HeaderProps> = ({ getAppointments }) => {
   )
 }
 
-export default Header
+export { Header }

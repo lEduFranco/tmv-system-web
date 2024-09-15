@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { FiMenu } from 'react-icons/fi'
 
 import { MobileSidebar } from '@ui-components/Menu/components/mobile-sidebar'
+import { UserOptions } from './components/user-options'
 
 export const NavBar: React.FC = () => {
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false)
@@ -19,6 +20,8 @@ export const NavBar: React.FC = () => {
         open={isMobileSidebarOpen}
         closeSidebar={() => setIsMobileSidebarOpen(false)}
       />
+
+      <UserOptions />
     </div>
   )
 }

@@ -2,8 +2,9 @@ import React, { useMemo } from 'react'
 import { Button, ColumnProps, DataGrid, PageCreate } from '@/ui-components'
 import { FiUsers, FiRotateCcw } from 'react-icons/fi'
 import { Actions } from './components/actions'
-import { useGetUsersByRole } from '@/core/modules/user/hooks/get-users-by-role'
+import { useGetUsersByRole } from '@/core/modules/user/hooks/use-get-users-by-role'
 import { UserType } from '@/core'
+import { Header } from './components/header'
 
 export const ListProviders: React.FC = () => {
   const { users, loading, handleGetUsersByRole } = useGetUsersByRole('provider')
@@ -27,21 +28,24 @@ export const ListProviders: React.FC = () => {
   }, [])
 
   return (
-    <PageCreate title="Lista de Prestadores" icon={<FiUsers />}>
+    <PageCreate
+      title="Lista de Prestadores"
+      icon={<FiUsers />}
+      actions={
+        <Button onClick={() => handleGetUsersByRole('provider')}>
+          <FiRotateCcw />
+        </Button>
+      }
+    >
       <DataGrid
-        header={
-          <Button
-            onClick={() => handleGetUsersByRole('provider')}
-            icon={<FiRotateCcw />}
-          >
-            Recarregar
-          </Button>
-        }
+        header={<Header handleGetUsersByRole={handleGetUsersByRole} />}
         keyExtractor={(item) => item.id}
         data={users}
         columns={columns}
         loading={loading}
-        renderTableActions={({ item }) => <Actions item={item} />}
+        renderTableActions={({ item }) => (
+          <Actions handleGetUsersByRole={handleGetUsersByRole} item={item} />
+        )}
       />
     </PageCreate>
   )

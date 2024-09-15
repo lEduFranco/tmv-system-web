@@ -7,12 +7,16 @@ import { ModalEdit } from '../modal-edit'
 
 interface ActionsProps {
   item: UserType
+  handleGetUsersByRole: (role: string) => void
 }
 
-export const Actions: React.FC<ActionsProps> = ({ item }) => {
+export const Actions: React.FC<ActionsProps> = ({
+  item,
+  handleGetUsersByRole,
+}) => {
   return (
     <div className="flex gap-1">
-      <ModalEdit item={item} />
+      <ModalEdit item={item} handleGetUsersByRole={handleGetUsersByRole} />
 
       <Button typeColor="error">
         <FiTrash2 />

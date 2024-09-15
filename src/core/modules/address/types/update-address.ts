@@ -1,4 +1,4 @@
-export interface UpdateUserRequest {
+export interface UpdateAddressRequest {
   id: string
   role: 'admin' | 'provider' | 'client' | 'staff'
   email: string
@@ -8,7 +8,7 @@ export interface UpdateUserRequest {
   avatarUrl?: string | null
 }
 
-export interface UpdateUserResponse {
+export interface UpdateAddressResponse {
   id: string
   role: 'admin' | 'provider' | 'client' | 'staff'
   email: string

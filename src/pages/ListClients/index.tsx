@@ -8,7 +8,7 @@ import {
   Form,
 } from '@/ui-components'
 import { FiUsers } from 'react-icons/fi'
-import { useGetUsersByRole } from '@/core/modules/user/hooks/get-users-by-role'
+import { useGetUsersByRole } from '@/core/modules/user/hooks/use-get-users-by-role'
 import { Actions } from './components/actions'
 import { FormProvider, useForm } from 'react-hook-form'
 

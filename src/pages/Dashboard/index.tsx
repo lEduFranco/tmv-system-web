@@ -3,7 +3,7 @@ import { PageCreate } from '@/ui-components'
 import { FiGrid, FiUsers, FiCalendar } from 'react-icons/fi'
 import { DashboardCard } from './components/DashboardCard'
 import { useCountAppointments } from '@/core/modules/appointment/hooks/use-count-appointments'
-import { useGetUsersByRole } from '@/core/modules/user/hooks/get-users-by-role'
+import { useGetUsersByRole } from '@/core/modules/user/hooks/use-get-users-by-role'
 
 export const Dashboard: React.FC = () => {
   const { countAppointments } = useCountAppointments()

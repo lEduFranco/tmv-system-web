@@ -1,4 +1,6 @@
-import { useUpdateAppointments } from '@/core/modules/appointment/hooks/use-update-appointments'
+import { useUpdateUser } from '@/core/modules/user/hooks/use-update-user'
+import { UpdateUserRequest } from '@/core/modules/user/types/update-users'
+
 import { Button } from '@/ui-components'
 
 import React from 'react'
@@ -9,16 +11,14 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({ handleModalClose }) => {
-  const { handleSubmit, watch } = useFormContext()
-  const { handleUpdateAppointments, loading } = useUpdateAppointments()
+  const { handleSubmit } = useFormContext()
+  const { handleUpdateUser, loading } = useUpdateUser()
 
-  // const { id, providerId } = watch()
+  const handleEdit = handleSubmit((data: UpdateUserRequest) => {
+    handleUpdateUser(data)
 
-  // const handleEdit = handleSubmit((data: FormData) => {
-  //   handleUpdateAppointments(data)
-
-  //   handleModalClose()
-  // })
+    handleModalClose()
+  })
 
   return (
     <div className="flex justify-end">
@@ -30,7 +30,7 @@ const Footer: React.FC<FooterProps> = ({ handleModalClose }) => {
         <Button
           size="sm"
           typeColor="success"
-          onClick={() => {}}
+          onClick={handleEdit}
           isLoading={loading}
         >
           Salvar

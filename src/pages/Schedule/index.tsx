@@ -7,7 +7,7 @@ import { Client } from './components/client'
 import { Address } from './components/address'
 import { Appointment } from '@/core'
 import { Actions } from './components/actions'
-import Header from './components/header'
+import { Header } from './components/header'
 import { FormProvider, useForm } from 'react-hook-form'
 import { format } from 'date-fns'
 

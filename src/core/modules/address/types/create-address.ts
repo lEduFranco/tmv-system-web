@@ -1,9 +1,9 @@
-import { Address } from './address'
+import { AddressType } from "./address";
 
 export type CreateAddressRequest = {
-  date: string
-  clientId: string
-  providerId: string
-}
+  date: string;
+  clientId: string;
+  providerId: string;
+};
 
-export type CreateAddressResponse = Address
+export type CreateAddressResponse = AddressType;

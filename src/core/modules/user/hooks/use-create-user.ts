@@ -1,18 +1,18 @@
 import { useState, useCallback } from "react";
 
 import { useToast } from "@/ui-components";
-import { createAddress } from "../service/address-service";
-import { CreateAddressRequest } from "../types/create-address";
+import { createUser } from "../service/user-service";
+import { CreateUserRequest } from "../types/create-appointment";
 
-const useCreateAddress = () => {
+const useCreateUser = () => {
   const { addToast } = useToast();
   const [loading, setLoading] = useState(false);
 
-  const handleCreateAddress = useCallback(
-    async (params: CreateAddressRequest) => {
+  const handleCreateUsers = useCallback(
+    async (params: CreateUserRequest) => {
       setLoading(true);
       try {
-        const response = await createAddress(params);
+        const response = await createUser(params);
 
         if (!response.data) {
           return;
@@ -20,7 +20,7 @@ const useCreateAddress = () => {
 
         addToast({
           title: "Success",
-          description: "Address Created",
+          description: "User Created",
           type: "success",
         });
       } catch (error) {
@@ -32,7 +32,7 @@ const useCreateAddress = () => {
     [addToast]
   );
 
-  return { handleCreateAddress, loading };
+  return { handleCreateUsers, loading };
 };
 
-export { useCreateAddress };
+export { useCreateUser };

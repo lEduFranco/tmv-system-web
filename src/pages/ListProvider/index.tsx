@@ -1,13 +1,21 @@
-import React, { useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { Button, ColumnProps, DataGrid, PageCreate } from '@/ui-components'
 import { FiUsers, FiRotateCcw } from 'react-icons/fi'
 import { Actions } from './components/actions'
-import { useGetUsersByRole } from '@/core/modules/user/hooks/use-get-users-by-role'
 import { UserType } from '@/core'
 import { Header } from './components/header'
+import { useUsers } from '@/core/modules/user/providers/user'
 
 export const ListProviders: React.FC = () => {
-  const { users, loading, handleGetUsersByRole } = useGetUsersByRole('provider')
+  const {
+    users,
+    loading,
+    handlers: { handleGetUsersByRole },
+  } = useUsers()
+
+  useEffect(() => {
+    handleGetUsersByRole('provider')
+  }, [handleGetUsersByRole])
 
   const columns: ColumnProps<UserType>[] = useMemo(() => {
     return [

@@ -7,13 +7,9 @@ import { FormData } from '.'
 
 interface FooterProps {
   handleModalClose: () => void
-  getAppointments: (date: string) => void
 }
 
-const Footer: React.FC<FooterProps> = ({
-  handleModalClose,
-  getAppointments,
-}) => {
+const Footer: React.FC<FooterProps> = ({ handleModalClose }) => {
   const { handleSubmit, watch } = useFormContext()
   const { handleUpdateAppointments, loading } = useUpdateAppointments()
 
@@ -31,7 +27,6 @@ const Footer: React.FC<FooterProps> = ({
     handleUpdateAppointments(payload)
 
     handleModalClose()
-    getAppointments(format(date, 'yyyy-MM-dd'))
   })
 
   return (

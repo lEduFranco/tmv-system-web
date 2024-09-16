@@ -7,13 +7,10 @@ import { useCreateAppointments } from '@/core/modules/appointment/hooks/use-crea
 
 interface FooterProps {
   handleModalClose: () => void
-  getAppointments: (date: string) => void
+  setValue: (name: string, value: any) => void
 }
 
-const Footer: React.FC<FooterProps> = ({
-  handleModalClose,
-  getAppointments,
-}) => {
+const Footer: React.FC<FooterProps> = ({ handleModalClose, setValue }) => {
   const { handleSubmit } = useFormContext()
   const { handleCreateAppointments, loading } = useCreateAppointments()
   const { addToast } = useToast()
@@ -28,9 +25,9 @@ const Footer: React.FC<FooterProps> = ({
         providerId: data.providerId,
       }
       handleCreateAppointments(payload)
+      setValue('date', date)
 
       handleModalClose()
-      getAppointments(format(date, 'yyyy-MM-dd'))
     } catch (error) {
       addToast({ title: 'Error', description: error.message, type: 'error' })
     }

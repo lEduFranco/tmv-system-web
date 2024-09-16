@@ -3,10 +3,15 @@ import { useState, useCallback } from 'react'
 import { useToast } from '@/ui-components'
 import { createAppointment } from '..'
 import { CreateAppointmentsRequest } from '../types/create-appointment'
+import { useAppointments } from '../providers/appointments'
+import { format, parseISO } from 'date-fns'
 
 const useCreateAppointments = () => {
   const { addToast } = useToast()
   const [loading, setLoading] = useState(false)
+  const {
+    handlers: { getAppointments },
+  } = useAppointments()
 
   const handleCreateAppointments = useCallback(
     async (params: CreateAppointmentsRequest) => {
@@ -17,6 +22,8 @@ const useCreateAppointments = () => {
         if (!response.data) {
           return
         }
+
+        getAppointments(format(parseISO(response.data.date), 'yyyy-MM-dd'))
 
         addToast({
           title: 'Success',
@@ -29,7 +36,7 @@ const useCreateAppointments = () => {
         setLoading(false)
       }
     },
-    [addToast],
+    [addToast, getAppointments],
   )
 
   return { handleCreateAppointments, loading }

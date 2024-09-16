@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo } from 'react'
 import { Button, ColumnProps, DataGrid, PageCreate } from '@/ui-components'
 import { FiCalendar, FiRotateCcw } from 'react-icons/fi'
-import { useGetAppointmentsByDate } from '@/core/modules/appointment/hooks/use-get-appointments-by-date'
 import { Provider } from './components/provider'
 import { Client } from './components/client'
 import { Address } from './components/address'
@@ -9,13 +8,18 @@ import { Appointment } from '@/core'
 import { Actions } from './components/actions'
 import { Header } from './components/header'
 import { FormProvider, useForm } from 'react-hook-form'
-import { format } from 'date-fns'
+import { format, parseISO } from 'date-fns'
+import { useAppointments } from '@/core/modules/appointment/providers/appointments'
 
 export const Schedule: React.FC = () => {
-  const { appointments, getAppointments, loading } = useGetAppointmentsByDate()
+  const {
+    appointments,
+    handlers: { getAppointments },
+    loading,
+  } = useAppointments()
   const form = useForm({
     defaultValues: {
-      date: new Date(),
+      date: parseISO(appointments[0]?.date) || new Date(),
     },
   })
 
@@ -62,13 +66,11 @@ export const Schedule: React.FC = () => {
         }
       >
         <DataGrid
-          header={<Header getAppointments={getAppointments} />}
+          header={<Header setValue={form.setValue} />}
           keyExtractor={(item) => item.id}
           data={appointments}
           columns={columns}
-          renderTableActions={({ item }) => (
-            <Actions getAppointments={getAppointments} item={item} />
-          )}
+          renderTableActions={({ item }) => <Actions item={item} />}
           loading={loading}
         />
       </PageCreate>

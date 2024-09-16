@@ -3,16 +3,21 @@ import { useState, useCallback } from 'react'
 import { useToast } from '@/ui-components'
 import { updateAppointment } from '..'
 import { UpdateAppointmentsRequest } from '../types/update-appointment'
+import { useAppointments } from '../providers/appointments'
 
 const useUpdateAppointments = () => {
   const { addToast } = useToast()
   const [loading, setLoading] = useState(false)
+  const {
+    handlers: { getAppointments },
+  } = useAppointments()
 
   const handleUpdateAppointments = useCallback(
     async (params: UpdateAppointmentsRequest) => {
       setLoading(true)
       try {
         await updateAppointment(params)
+        getAppointments(params.date)
         addToast({
           title: 'Success',
           description: 'Appointment updated',
@@ -24,7 +29,7 @@ const useUpdateAppointments = () => {
         setLoading(false)
       }
     },
-    [addToast],
+    [addToast, getAppointments],
   )
 
   return { handleUpdateAppointments, loading }

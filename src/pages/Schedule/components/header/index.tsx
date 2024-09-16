@@ -5,15 +5,15 @@ import React from 'react'
 import { ModalCreate } from '../modal-create'
 
 interface HeaderProps {
-  getAppointments: (date: string) => void
+  setValue: (name: string, value: any) => void
 }
 
-const Header: React.FC<HeaderProps> = ({ getAppointments }) => {
+const Header: React.FC<HeaderProps> = ({ setValue }) => {
   return (
     <div className="flex justify-between items-center">
       <Form.DatePicker name="date" className="w-[100px] cursor-pointer z-20" />
 
-      <ModalCreate getAppointments={getAppointments} />
+      <ModalCreate setValue={setValue} />
     </div>
   )
 }

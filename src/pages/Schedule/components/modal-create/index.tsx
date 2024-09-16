@@ -11,7 +11,7 @@ import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 
 interface ModalCreateProps {
-  getAppointments: (date: string) => void
+  setValue: (name: string, value: any) => void
 }
 
 export type FormData = {
@@ -27,7 +27,7 @@ const schema = yup.object().shape({
   providerId: yup.string().required(),
 })
 
-const ModalCreate: React.FC<ModalCreateProps> = ({ getAppointments }) => {
+const ModalCreate: React.FC<ModalCreateProps> = ({ setValue }) => {
   const [listUsersClients, setListUsersClients] = useState<UserType[]>([])
   const [listUsersProviders, setListUsersProviders] = useState<UserType[]>([])
   const [isOpen, setIsOpen] = useState(false)
@@ -100,10 +100,7 @@ const ModalCreate: React.FC<ModalCreateProps> = ({ getAppointments }) => {
           size="xl"
           title="Criar Agendamento"
           footerContent={
-            <Footer
-              handleModalClose={handleModalClose}
-              getAppointments={getAppointments}
-            />
+            <Footer handleModalClose={handleModalClose} setValue={setValue} />
           }
         >
           <div className="flex flex-col gap-3">

@@ -1,14 +1,22 @@
-import React, { useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { Button, ColumnProps, DataGrid, PageCreate } from '@/ui-components'
 import { FiUsers } from 'react-icons/fi'
-import { useGetUsersByRole } from '@/core/modules/user/hooks/use-get-users-by-role'
 import { Actions } from './components/actions'
 
 import { UserType } from '@/core'
 import { Header } from './components/header'
+import { useUsers } from '@/core/modules/user/providers/user'
 
 export const ListClients: React.FC = () => {
-  const { users, loading, handleGetUsersByRole } = useGetUsersByRole('client')
+  const {
+    users,
+    loading,
+    handlers: { handleGetUsersByRole },
+  } = useUsers()
+
+  useEffect(() => {
+    handleGetUsersByRole('client')
+  }, [handleGetUsersByRole])
 
   const columns: ColumnProps<UserType>[] = useMemo(() => {
     return [
@@ -38,14 +46,12 @@ export const ListClients: React.FC = () => {
       }
     >
       <DataGrid
-        header={<Header handleGetUsersByRole={handleGetUsersByRole} />}
+        header={<Header />}
         keyExtractor={(item) => item.id}
         data={users}
         columns={columns}
         loading={loading}
-        renderTableActions={({ item }) => (
-          <Actions item={item} handleGetUsersByRole={handleGetUsersByRole} />
-        )}
+        renderTableActions={({ item }) => <Actions item={item} />}
       />
     </PageCreate>
   )

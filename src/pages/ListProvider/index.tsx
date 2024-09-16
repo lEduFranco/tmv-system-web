@@ -38,14 +38,12 @@ export const ListProviders: React.FC = () => {
       }
     >
       <DataGrid
-        header={<Header handleGetUsersByRole={handleGetUsersByRole} />}
+        header={<Header />}
         keyExtractor={(item) => item.id}
         data={users}
         columns={columns}
         loading={loading}
-        renderTableActions={({ item }) => (
-          <Actions handleGetUsersByRole={handleGetUsersByRole} item={item} />
-        )}
+        renderTableActions={({ item }) => <Actions item={item} />}
       />
     </PageCreate>
   )

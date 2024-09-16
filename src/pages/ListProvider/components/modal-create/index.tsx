@@ -7,9 +7,7 @@ import { UserType } from '@/core'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 
-interface ModalCreateProps {
-  handleGetUsersByRole: (role: string) => void
-}
+interface ModalCreateProps {}
 
 const schema = yup.object().shape({
   name: yup.string().required('Nome é obrigatório'),
@@ -19,7 +17,7 @@ const schema = yup.object().shape({
   password: yup.string().min(6).required('Senha é obrigatória'),
 })
 
-const ModalCreate: React.FC<ModalCreateProps> = ({ handleGetUsersByRole }) => {
+const ModalCreate: React.FC<ModalCreateProps> = () => {
   const [isOpen, setIsOpen] = useState(false)
 
   const form = useForm<UserType>({
@@ -29,7 +27,6 @@ const ModalCreate: React.FC<ModalCreateProps> = ({ handleGetUsersByRole }) => {
   const handleModalClose = () => {
     setIsOpen(!open)
     form.reset()
-    handleGetUsersByRole('provider')
   }
 
   return (

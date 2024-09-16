@@ -6,6 +6,7 @@ import { ToastProvider } from '@/ui-components'
 import { ModalProvider } from 'styled-react-modal'
 import { BrowserRouter } from 'react-router-dom'
 import AppInterceptors from '@/core/AppInterceptors'
+import { UserProvider } from '@/core/modules/user/providers/user'
 
 interface Props {
   children: React.ReactNode
@@ -16,7 +17,9 @@ const AppProvider = ({ children }: Props): JSX.Element => (
     <ToastProvider>
       <AuthProvider>
         <AppInterceptors>
-          <ModalProvider>{children}</ModalProvider>
+          <UserProvider>
+            <ModalProvider>{children}</ModalProvider>
+          </UserProvider>
         </AppInterceptors>
       </AuthProvider>
     </ToastProvider>

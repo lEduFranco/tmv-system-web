@@ -5,14 +5,13 @@ import { ModalEdit } from '../modal-edit'
 import { UserType } from '@/core'
 
 interface ActionsProps {
-  handleGetUsersByRole: (role: string) => void
   item: UserType
 }
 
-const Actions: React.FC<ActionsProps> = ({ item, handleGetUsersByRole }) => {
+const Actions: React.FC<ActionsProps> = ({ item }) => {
   return (
     <div className="flex gap-1">
-      <ModalEdit handleGetUsersByRole={handleGetUsersByRole} item={item} />
+      <ModalEdit item={item} />
     </div>
   )
 }

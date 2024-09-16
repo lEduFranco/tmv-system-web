@@ -2,15 +2,13 @@ import React from 'react'
 
 import { ModalCreate } from '../modal-create'
 
-interface HeaderProps {
-  handleGetUsersByRole: (role: string) => void
-}
+interface HeaderProps {}
 
-const Header: React.FC<HeaderProps> = ({ handleGetUsersByRole }) => {
+const Header: React.FC<HeaderProps> = () => {
   return (
     <div className="flex justify-between items-center">
       <div>
-        <ModalCreate handleGetUsersByRole={handleGetUsersByRole} />
+        <ModalCreate />
       </div>
     </div>
   )

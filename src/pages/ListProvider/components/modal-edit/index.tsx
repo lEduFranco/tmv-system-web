@@ -10,7 +10,6 @@ import { yupResolver } from '@hookform/resolvers/yup'
 
 interface ModalEditProps {
   item: UserType
-  handleGetUsersByRole: (role: string) => void
 }
 
 const schema = yup.object().shape({
@@ -20,10 +19,7 @@ const schema = yup.object().shape({
   avatarUrl: yup.string().nullable(),
 })
 
-const ModalEdit: React.FC<ModalEditProps> = ({
-  item,
-  handleGetUsersByRole,
-}) => {
+const ModalEdit: React.FC<ModalEditProps> = ({ item }) => {
   const [isOpen, setIsOpen] = useState(false)
 
   const form = useForm<UserType>({
@@ -34,7 +30,6 @@ const ModalEdit: React.FC<ModalEditProps> = ({
   const handleModalClose = () => {
     setIsOpen(!open)
     form.reset()
-    handleGetUsersByRole('provider')
   }
 
   return (

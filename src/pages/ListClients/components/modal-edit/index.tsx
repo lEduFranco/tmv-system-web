@@ -70,7 +70,7 @@ const ModalEdit: React.FC<ModalEditProps> = ({ item }) => {
         </Modal.Trigger>
         <Modal.Content
           size="xl"
-          title="Editar Prestadora"
+          title="Editar Cliente"
           footerContent={<Footer handleModalClose={handleModalClose} />}
         >
           <div className="flex flex-col gap-2">

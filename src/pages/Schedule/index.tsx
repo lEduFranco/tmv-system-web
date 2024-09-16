@@ -19,7 +19,9 @@ export const Schedule: React.FC = () => {
   } = useAppointments()
   const form = useForm({
     defaultValues: {
-      date: parseISO(appointments[0]?.date) || new Date(),
+      date: appointments[0]?.date
+        ? parseISO(appointments[0]?.date)
+        : new Date(),
     },
   })
 
@@ -30,7 +32,7 @@ export const Schedule: React.FC = () => {
   }, [date])
 
   useEffect(() => {
-    getAppointments(dateFormat)
+    if (date) getAppointments(dateFormat)
   }, [date, getAppointments, dateFormat])
 
   const columns: ColumnProps<Appointment>[] = useMemo(() => {

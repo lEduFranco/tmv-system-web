@@ -6,11 +6,11 @@ interface AddressProps {
 }
 
 const Address: React.FC<AddressProps> = ({ item }) => {
-  if (!item.client?.address) {
+  if (!item.client?.addresses[0]?.street) {
     return <div>-</div>
   }
 
-  return <div>{item.client?.address[0]?.street}</div>
+  return <div>{!item.client?.addresses[0]?.street}</div>
 }
 
 export { Address }
